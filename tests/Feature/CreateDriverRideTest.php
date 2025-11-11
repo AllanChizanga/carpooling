@@ -14,9 +14,10 @@ class CreateDriverRideTest extends TestCase
 public function test_create_driver_ride_returns_status_code_200()
 {
     // Prepare driver vehicle (assume factory exists)
-    $driverVehicle = new DriverVehicle();
-    // $driverVehicle->driver_id = 1; // or set to a valid existing driver id if necessary
-    $driverVehicle->vehicle_info = 'Test Car';
+    $driverVehicle = new DriverVehicle([
+        'vehicle_id' => 101, // assuming vehicle_id is required and 101 is a dummy id
+        'status' => 'active',
+    ]);
     $driverVehicle->save();
 
     // Valid ride data based on CarpoolRide fillable fields

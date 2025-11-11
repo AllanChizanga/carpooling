@@ -29,6 +29,7 @@ class CarpoolRideService
         $driver_id = $driver_vehicle->driver_id;
         //check if driver is liable to create ride 
         $res = $this->createRideAction->execute($driver_id);
+        //if true 
         if($res)
         {
 

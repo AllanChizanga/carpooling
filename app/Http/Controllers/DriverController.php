@@ -18,7 +18,7 @@ class DriverController extends Controller
         
         $this->driverService = $driverService;
         $this->rideService = $rideService;
-    }
+    }//endof construct 
 
   
     public function create_driver_ride(NewrideRequest $request)

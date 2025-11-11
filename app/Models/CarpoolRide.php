@@ -13,6 +13,7 @@ class CarpoolRide extends Model
         'origin_name',
         'destination_name',
         'departure_time',
+        'date_of_departure',
         'available_seats',
         'origin_coordinations',
         'description',

@@ -11,8 +11,14 @@ use App\Http\Middleware\IsDriverMiddleware;
 // });
 
 //fake api
-Route::prefix('carpooling')->controller(DriverController::class)->group(function () {
+Route::prefix('carpooling/drivers')->controller(DriverController::class)->group(function () {
     Route::post('create-driver-ride','create_driver_ride');
 });
-//passenger routes 
+
+//passenger routes  
+
+Route::prefix('carpooling/passengers')->controller(PassengerController::class)->group(function () {
+    Route::post('view-carpool-rides','view_carpool_rides');
+});
+
 

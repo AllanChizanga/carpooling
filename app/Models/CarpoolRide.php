@@ -27,4 +27,11 @@ class CarpoolRide extends Model
     ];
 
     public $timestamps = true;
+    /**
+     * A carpool ride has many pickup points.
+     */
+    public function pickupPoints()
+    {
+        return $this->hasMany(CarpoolRidePickupPoint::class, 'carpool_ride_id');
+    }
 }

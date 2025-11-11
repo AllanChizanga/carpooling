@@ -25,7 +25,7 @@ class NewrideRequest extends FormRequest
         'driver_vehicle_id' => 'required|integer|exists:driver_vehicles,id',
         'origin_name' => 'required|string|max:255',
         'destination_name' => 'required|string|max:255',
-        'departure_time' => 'required|time|after:now',
+        'departure_time' => 'required|date_format:H:i|after:now',
         'date_of_departure' => 'required|date|after:now',
         'available_seats' => 'required|integer|min:1',
         'origin_coordinations' => 'nullable|string|max:255',

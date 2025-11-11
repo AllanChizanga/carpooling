@@ -43,7 +43,7 @@ public function test_create_driver_ride_returns_status_code_200()
     $response = $this->withHeaders([
         'Accept' => 'application/json',
         'Content-Type' => 'application/json'
-    ])->post('/api/carpooling/drivers/create-driver-ride', $rideData);
+    ])->postJson('/api/carpooling/drivers/create-driver-ride', $rideData);
 
     $response->assertStatus(200);
 }

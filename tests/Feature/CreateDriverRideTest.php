@@ -31,7 +31,7 @@ public function test_create_driver_ride_returns_status_code_200()
         'available_seats' => 3,
         'origin_coordinations' => '40.785091,-73.968285',
         'description' => 'Morning ride',
-        'status' => 'active',
+        'status' => 'open',
         'contribution_per_seat' => 10,
         'total_bookings' => 0,
         'origin_lat' => 40.785091,

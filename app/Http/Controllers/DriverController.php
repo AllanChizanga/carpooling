@@ -27,14 +27,19 @@ class DriverController extends Controller
         $new_ride_data = $request->validated(); 
 
         //call carpoolride service 
-        $this->rideService->create_new_ride($new_ride_data); 
+       $res =  $this->rideService->create_new_ride($new_ride_data); 
 
-        //response 
+        //response  
 
-        return response()->json(['data',],200);
-      
+        if($res)
+        { 
+            return response()->json(['data'=>[],'message'=>'New Ride Created Successfully'],200);
+        }
+        else{
+            return response()->json(['data'=>[],'message'=>'Failed To Created Ride'],422);
+        }
 
-
+    
 
     } //endof function
     

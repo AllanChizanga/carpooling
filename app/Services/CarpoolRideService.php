@@ -24,6 +24,9 @@ class CarpoolRideService
         $this->rideRepository = $rideRepository;
     }  //endof construct
 
+
+
+
     public function create_new_ride($data)
     {
         //fetch the driver 
@@ -31,26 +34,29 @@ class CarpoolRideService
         $driver_id = $driver_vehicle->driver_id;
         //check if driver is liable to create ride 
         $res = $this->createRideAction->execute($driver_id);
-        //if true 
-        if($res)
+        //if false
+        if(!$res)
         {
-
-        }
-        //driver cannot create ride;
-        else{
             return false;
         }
+       
         //check driver rides has not exceeded limit of the day 
         $res = $this->driverRideLimit->execute($data['driver_vehicle_id']);
-        if($res)
-        {
-               //save new ride  
-               $this->rideRepository->create($data);
-        }
-        else{
-        return false;
-        }
+        if(!$res)
+        { 
+            return false;   
+        } 
+
+        $this->rideRepository->create($data);
+        
     }//endof fucntion 
+
+
+
+
+
+
+
 
     //function to view carpool rides 
 

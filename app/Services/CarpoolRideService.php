@@ -41,7 +41,7 @@ class CarpoolRideService
             return false;
         }
         //check driver rides has not exceeded limit of the day 
-        $res = $this->driverRideLimit->execute($driver_id);
+        $res = $this->driverRideLimit->execute($data['driver_vehicle_id']);
         if($res)
         {
                //save new ride  

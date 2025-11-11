@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\CarpoolRide;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CarpoolRideSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class CarpoolRideSeeder extends Seeder
     public function run(): void
     {
     // Create 10 carpool rides with Harare locations and status 'open'
-    \App\Models\CarpoolRide::insert([
+    CarpoolRide::insert([
         [
             'driver_vehicle_id' => 1,
             'origin_name' => 'Harare CBD',

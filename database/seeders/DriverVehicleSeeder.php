@@ -33,7 +33,7 @@ class DriverVehicleSeeder extends Seeder
         [
             'driver_id' => 4,
             'vehicle_id' => 4,
-            'status' => 'pending',
+            'status' => 'active',
         ],
         [
             'driver_id' => 5,
@@ -53,7 +53,7 @@ class DriverVehicleSeeder extends Seeder
         [
             'driver_id' => 8,
             'vehicle_id' => 8,
-            'status' => 'pending',
+            'status' => 'active',
         ],
         [
             'driver_id' => 9,

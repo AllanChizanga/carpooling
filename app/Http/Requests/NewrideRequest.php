@@ -30,7 +30,7 @@ class NewrideRequest extends FormRequest
         'available_seats' => 'required|integer|min:1',
         'origin_coordinations' => 'nullable|string|max:255',
         'description' => 'nullable|string|max:1000',
-        'status' => 'required|string|in:pending,active,completed,canceled',
+        'status' => 'required|string',
         'contribution_per_seat' => 'required|numeric|min:0',
         'total_bookings' => 'nullable|integer|min:0',
         'origin_lat' => 'required|numeric|between:-90,90',

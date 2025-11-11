@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
     $users = [
-        [
+        [   
             'fullname' => 'Alice Johnson',
             'national_id' => 'ID12345601',
             'phone' => '555-0001',

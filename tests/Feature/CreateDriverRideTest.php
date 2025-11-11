@@ -15,6 +15,7 @@ public function test_create_driver_ride_returns_status_code_200()
 {
     // Prepare driver vehicle (assume factory exists)
     $driverVehicle = new DriverVehicle([
+        'driver_id' => 1, // use a valid existing driver id for test purposes
         'vehicle_id' => 101, // assuming vehicle_id is required and 101 is a dummy id
         'status' => 'active',
     ]);

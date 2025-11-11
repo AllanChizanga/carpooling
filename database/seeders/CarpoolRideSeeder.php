@@ -14,7 +14,7 @@ class CarpoolRideSeeder extends Seeder
     public function run(): void
     {
     // Create 10 carpool rides with Harare locations and status 'open'
-    CarpoolRide::insert([
+    CarpoolRide::create([
         [
             'driver_vehicle_id' => 1,
             'origin_name' => 'Harare CBD',

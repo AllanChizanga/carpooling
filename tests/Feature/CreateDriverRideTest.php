@@ -45,7 +45,7 @@ public function test_create_driver_ride_returns_status_code_200()
         'Content-Type' => 'application/json'
     ])->postJson('/api/carpooling/drivers/create-driver-ride', $rideData);
 
-    $response->assertStatus(201);
+    $response->assertStatus(200);
 }
 
 }

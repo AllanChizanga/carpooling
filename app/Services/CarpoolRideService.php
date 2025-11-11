@@ -47,7 +47,12 @@ class CarpoolRideService
             return false;   
         } 
 
-        $this->rideRepository->create($data);
+        $res = $this->rideRepository->create($data);
+        if($res)
+        {
+            return true;
+        }
+
         
     }//endof fucntion 
 

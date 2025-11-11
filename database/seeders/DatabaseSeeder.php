@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\DriverSeeder;
+use Database\Seeders\CarpoolRideSeeder;
 use Database\Seeders\DriverVehicleSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(DriverSeeder::class);
         $this->call(DriverVehicleSeeder::class);
+        $this->call(CarpoolRideSeeder::class);
     }
 }

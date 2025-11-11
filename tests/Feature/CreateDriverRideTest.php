@@ -40,7 +40,7 @@ public function test_create_driver_ride_returns_status_code_200()
         'destination_long' => -73.985130,
     ];
 
-    $response = $this->postJson('/api/carpooling/drivers/create-driver-ride', $rideData);
+    $response = $this->post('/api/carpooling/drivers/create-driver-ride', $rideData);
 
     $response->assertStatus(200);
 }

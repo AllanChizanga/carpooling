@@ -19,7 +19,7 @@ Route::prefix('carpooling/drivers')->controller(DriverController::class)->group(
 //passenger routes  
 
 Route::prefix('carpooling/passengers')->controller(PassengerController::class)->group(function () {
-    Route::post('view-carpool-rides','view_carpool_rides');
+    Route::post('','view_carpool_rides');
 });
 
 

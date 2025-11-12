@@ -23,10 +23,10 @@ class PassengerController extends Controller
        $data =  $request->validated();
 
         // call service 
-        $this->rideService->view_carpool_rides($data);
+        $rides = $this->rideService->view_carpool_rides($data);
 
-        return response()->json([
-            'message' => 'Listing carpool rides will be implemented here.'
+        return response()->json(['data'=> $rides,
+            'message' => 'Rides Listings'
         ], 200);
     }//endof function
 

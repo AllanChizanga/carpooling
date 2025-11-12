@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DriverController;
 use App\Http\Middleware\IsDriverMiddleware;
+use App\Http\Controllers\PassengerController;
 
 //driver routes 
 // Route::prefix('carpooling')->middleware(['auth:sanctum',IsDriverMiddleware::class])->controller(DriverController::class)->group(function () {

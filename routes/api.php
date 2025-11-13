@@ -54,6 +54,16 @@ Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class,IsDriverM
 
 Route::prefix('carpooling/passengers')->controller(PassengerController::class)->group(function () {
     Route::post('','view_carpool_rides');
+    //starting ride 
+    Route::get('start-ride/{booking_id}','start_ride'); 
+    //cancel ride  
+    Route::get('passenger-cancel-ride-booking/{booking_id}','passenger_cancel_ride_booking'); 
+    //complete ride 
+    Route::get('passenger-complete-ride/{booking_id}','passenger_complete_ride'); 
+    //view booking histories 
+    Route::get('view-booking-history/{user_id}','view_booking_history'); 
+    
+
 });
 
 

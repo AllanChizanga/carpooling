@@ -112,5 +112,124 @@ class RideBookingService
             ]
         ];
     }
+    }//endof function 
+public function start_ride($booking_id)
+{
+    // Retrieve the ride booking
+    $booking = RideBooking::find($booking_id);
+
+    if (!$booking) {
+        return [
+            'success' => false,
+            'message' => 'Ride booking not found',
+            'data' => []
+        ];
     }
+
+    // Only start ride if booking_status is 'accepted'
+    if ($booking->booking_status == 'accepted') {
+        $booking->booking_status = 'inprogress';
+        $booking->save();
+
+        return [
+            'success' => true,
+            'message' => 'Ride started successfully',
+            'data' => [
+                'booking' => $booking
+            ]
+        ];
+    } else {
+        return [
+            'success' => false,
+            'message' => 'Only bookings with accepted status can be started',
+            'data' => [
+                'booking' => $booking
+            ]
+        ];
+    }
+}//endof function 
+
+public function passenger_cancel_ride_booking($booking_id)
+{
+    // Retrieve the ride booking
+    $booking = RideBooking::find($booking_id);
+
+    if (!$booking) {
+        return [
+            'success' => false,
+            'message' => 'Ride booking not found',
+            'data' => []
+        ];
+    }
+
+    // Only cancel if booking_status is 'accepted'
+    if ($booking->booking_status == 'accepted') {
+        $booking->booking_status = 'cancelled';
+        $booking->save();
+
+        return [
+            'success' => true,
+            'message' => 'Ride booking cancelled successfully',
+            'data' => [
+                'booking' => $booking
+            ]
+        ];
+    } else {
+        return [
+            'success' => false,
+            'message' => 'Only bookings with accepted status can be cancelled',
+            'data' => [
+                'booking' => $booking
+            ]
+        ];
+    }
+}//endof function 
+
+public function passenger_complete_ride($booking_id)
+{
+    // Retrieve the ride booking
+    $booking = RideBooking::find($booking_id);
+
+    if (!$booking) {
+        return [
+            'success' => false,
+            'message' => 'Ride booking not found',
+            'data' => []
+        ];
+    }
+
+    // Only allow complete if booking_status is 'inprogress'
+    if ($booking->booking_status == 'inprogress') {
+        $booking->booking_status = 'completed';
+        $booking->save();
+
+        return [
+            'success' => true,
+            'message' => 'Ride completed successfully',
+            'data' => [
+                'booking' => $booking
+            ]
+        ];
+    } else {
+        return [
+            'success' => false,
+            'message' => 'Only bookings in progress can be completed',
+            'data' => [
+                'booking' => $booking
+            ]
+        ];
+    }
+}//endof function 
+
+public function view_booking_history($user_id)
+{
+    // Retrieve the 10 latest ride bookings for given user_id
+    $bookings = RideBooking::where('user_id', $user_id)
+        ->orderBy('created_at', 'desc')
+        ->limit(10)
+        ->get();
+
+    return $bookings;
+}//endof function
+    
 }//endof class

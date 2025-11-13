@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Ride extends Model
 { 
     use HasUuids,SoftDeletes;
-    protected $table = 'carpool_rides';
+    protected $table = 'rides';
 
     protected $fillable = [
         'driver_vehicle_id',

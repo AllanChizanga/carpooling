@@ -3,14 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Ride;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class CarpoolRideSeeder extends Seeder
+class RideSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         // These entries mirror the columns in @2025_11_12_093052_create_rides_table.php (lines 16-31)
@@ -212,4 +210,3 @@ class CarpoolRideSeeder extends Seeder
         }
     }
 }
-

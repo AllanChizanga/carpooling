@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\CarpoolRide;
+use App\Models\Ride;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 
 class CarpoolRideSeeder extends Seeder
 {
@@ -13,18 +13,16 @@ class CarpoolRideSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 10 carpool rides with Harare locations and status 'open'
-        // Ensure all rides contain created_at and updated_at columns
+        // These entries mirror the columns in @2025_11_12_093052_create_rides_table.php (lines 16-31)
         $rides = [
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 1,
                 'origin_name' => 'Harare CBD',
                 'destination_name' => 'Borrowdale',
-                'departure_time' => '08:00',
+                'departure_time' => '08:00:00',
                 'date_of_departure' => now()->addDay()->toDateString(),
                 'available_seats' => 3,
-                'origin_coordinations' => '-17.829222,31.052222',
-                'description' => 'Morning ride from CBD to Borrowdale.',
                 'status' => 'open',
                 'contribution_per_seat' => 5.00,
                 'total_bookings' => 0,
@@ -32,18 +30,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.052222,
                 'destination_lat' => -17.7765,
                 'destination_long' => 31.0959,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 2,
                 'origin_name' => 'Avondale',
                 'destination_name' => 'Harare CBD',
-                'departure_time' => '09:00',
+                'departure_time' => '09:00:00',
                 'date_of_departure' => now()->addDay()->toDateString(),
                 'available_seats' => 4,
-                'origin_coordinations' => '-17.800800,31.034000',
-                'description' => 'Easy commute from Avondale to CBD',
                 'status' => 'open',
                 'contribution_per_seat' => 4.00,
                 'total_bookings' => 0,
@@ -51,18 +49,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.0340,
                 'destination_lat' => -17.8292,
                 'destination_long' => 31.0522,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 3,
                 'origin_name' => 'Marlborough',
                 'destination_name' => 'Eastlea',
-                'departure_time' => '10:30',
+                'departure_time' => '10:30:00',
                 'date_of_departure' => now()->addDays(2)->toDateString(),
                 'available_seats' => 5,
-                'origin_coordinations' => '-17.800000,31.016700',
-                'description' => 'Marlborough to Eastlea mid-morning.',
                 'status' => 'open',
                 'contribution_per_seat' => 6.00,
                 'total_bookings' => 0,
@@ -70,18 +68,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.016700,
                 'destination_lat' => -17.8188,
                 'destination_long' => 31.0711,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 1,
                 'origin_name' => 'Highlands',
                 'destination_name' => 'Msasa',
-                'departure_time' => '07:45',
+                'departure_time' => '07:45:00',
                 'date_of_departure' => now()->addDays(3)->toDateString(),
                 'available_seats' => 2,
-                'origin_coordinations' => '-17.785419,31.085007',
-                'description' => 'Ride from Highlands to Msasa industrial.',
                 'status' => 'open',
                 'contribution_per_seat' => 7.50,
                 'total_bookings' => 0,
@@ -89,18 +87,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.085007,
                 'destination_lat' => -17.7901,
                 'destination_long' => 31.1252,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 4,
                 'origin_name' => 'Waterfalls',
                 'destination_name' => 'Harare CBD',
-                'departure_time' => '06:30',
+                'departure_time' => '06:30:00',
                 'date_of_departure' => now()->addDays(1)->toDateString(),
                 'available_seats' => 3,
-                'origin_coordinations' => '-17.9000,31.0167',
-                'description' => 'Morning ride Waterfalls to CBD.',
                 'status' => 'open',
                 'contribution_per_seat' => 3.50,
                 'total_bookings' => 0,
@@ -108,18 +106,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.0167,
                 'destination_lat' => -17.8292,
                 'destination_long' => 31.0522,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 5,
                 'origin_name' => 'Greendale',
                 'destination_name' => 'Belgravia',
-                'departure_time' => '11:00',
+                'departure_time' => '11:00:00',
                 'date_of_departure' => now()->addDays(2)->toDateString(),
                 'available_seats' => 4,
-                'origin_coordinations' => '-17.8154,31.1113',
-                'description' => 'Greendale to Belgravia late morning.',
                 'status' => 'open',
                 'contribution_per_seat' => 5.50,
                 'total_bookings' => 0,
@@ -127,18 +125,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.1113,
                 'destination_lat' => -17.8089,
                 'destination_long' => 31.0404,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 2,
                 'origin_name' => 'Msasa',
                 'destination_name' => 'Chisipite',
-                'departure_time' => '13:15',
+                'departure_time' => '13:15:00',
                 'date_of_departure' => now()->addDays(2)->toDateString(),
                 'available_seats' => 2,
-                'origin_coordinations' => '-17.7901,31.1252',
-                'description' => 'Afternoon trip Msasa to Chisipite.',
                 'status' => 'open',
                 'contribution_per_seat' => 8.00,
                 'total_bookings' => 0,
@@ -146,18 +144,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.1252,
                 'destination_lat' => -17.7827,
                 'destination_long' => 31.1241,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 3,
                 'origin_name' => 'Eastlea',
                 'destination_name' => 'Mabelreign',
-                'departure_time' => '15:00',
+                'departure_time' => '15:00:00',
                 'date_of_departure' => now()->addDays(1)->toDateString(),
                 'available_seats' => 3,
-                'origin_coordinations' => '-17.818800,31.071100',
-                'description' => 'After work ride from Eastlea to Mabelreign.',
                 'status' => 'open',
                 'contribution_per_seat' => 6.50,
                 'total_bookings' => 0,
@@ -165,18 +163,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.071100,
                 'destination_lat' => -17.7700,
                 'destination_long' => 31.0089,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 4,
                 'origin_name' => 'Kuwadzana',
                 'destination_name' => 'Harare CBD',
-                'departure_time' => '07:00',
+                'departure_time' => '07:00:00',
                 'date_of_departure' => now()->addDays(3)->toDateString(),
                 'available_seats' => 6,
-                'origin_coordinations' => '-17.863900,30.934700',
-                'description' => 'Early morning Kuwaitzana to the city.',
                 'status' => 'open',
                 'contribution_per_seat' => 4.50,
                 'total_bookings' => 0,
@@ -184,18 +182,18 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 30.934700,
                 'destination_lat' => -17.8292,
                 'destination_long' => 31.0522,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'id' => (string) Str::uuid(),
                 'driver_vehicle_id' => 5,
                 'origin_name' => 'Chitungwiza',
                 'destination_name' => 'Harare CBD',
-                'departure_time' => '08:45',
+                'departure_time' => '08:45:00',
                 'date_of_departure' => now()->addDays(1)->toDateString(),
                 'available_seats' => 2,
-                'origin_coordinations' => '-18.012900,31.075600',
-                'description' => 'Chitungwiza to City Centre morning departure.',
                 'status' => 'open',
                 'contribution_per_seat' => 7.00,
                 'total_bookings' => 0,
@@ -203,14 +201,15 @@ class CarpoolRideSeeder extends Seeder
                 'origin_long' => 31.075600,
                 'destination_lat' => -17.8292,
                 'destination_long' => 31.0522,
+                'deleted_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
         ];
 
         foreach ($rides as $ride) {
-            CarpoolRide::create($ride);
+            Ride::create($ride);
         }
     }
 }
-        
+

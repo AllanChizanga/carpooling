@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\CarpoolRide;
+use App\Models\Ride;
 
 class CarpoolRideRepositories
 {
@@ -20,7 +20,7 @@ class CarpoolRideRepositories
     { 
     // Use the CarpoolRide model to create and save a new carpool ride with the given $data
     // Assumption: $data is a valid associative array of input attributes
-    return CarpoolRide::create($data);
+    return Ride::create($data);
     
     }
 

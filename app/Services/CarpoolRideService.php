@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\CarpoolRide;
-use App\Models\DriverVehicle;
+
 use App\Actions\CheckDriverRideLimit;
-use App\Models\CarpoolRidePickupPoint;
 use App\Repositories\CarpoolRideRepositories;
 use App\Actions\CheckCanDriverCreateRideAction;
 
@@ -28,29 +26,33 @@ class CarpoolRideService
 
 
     public function create_new_ride($data)
-    {
-        //fetch the driver 
-        $driver_vehicle = DriverVehicle::where('id',$data['driver_vehicle_id'])->first();
-        $driver_id = $driver_vehicle->driver_id;
-        //check if driver is liable to create ride 
-        $res = $this->createRideAction->execute($driver_id);
-        //if false
-        if(!$res)
-        {
-            return false;
-        }
-       
+    { 
+        //algorithm 
+        //driver must not create more than 3 rides in a day 
+        //driver must be allowed by vpay to create right 
+
+
+     
         //check driver rides has not exceeded limit of the day 
         $res = $this->driverRideLimit->execute($data['driver_vehicle_id']);
+        
         if(!$res)
         { 
-            return false;   
+            return [
+                'success' => false,
+                'message' => 'Driver has reached the ride creation limit for today.',
+                'data' => []
+            ];   
         } 
 
         $res = $this->rideRepository->create($data);
         if($res)
         {
-            return true;
+            return [
+                'success' => true,
+                'message' => 'New Ride Created Successfully',
+                'data' => []
+            ];
         }
 
         

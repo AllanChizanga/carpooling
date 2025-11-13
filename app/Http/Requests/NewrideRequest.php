@@ -28,8 +28,6 @@ class NewrideRequest extends FormRequest
         'departure_time' => 'required|date_format:H:i',
         'date_of_departure' => 'required|date|after:now',
         'available_seats' => 'required|integer|min:1',
-        'origin_coordinations' => 'nullable|string|max:255',
-        'description' => 'nullable|string|max:1000',
         'status' => 'required|string',
         'contribution_per_seat' => 'required|numeric|min:0',
         'total_bookings' => 'nullable|integer|min:0',

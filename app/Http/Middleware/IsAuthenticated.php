@@ -26,13 +26,21 @@ class IsAuthenticated
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . $token,
                 'Accept' => 'application/json',
-            ])->timeout(5)
-              ->post(env('AUTH_SERVICE_URL', 'http://auth_service/verify'));
+            ])
+            ->timeout(5)
+            ->post('https://authentication.zomacdigital.co.zw/api/user/verify-token');
 
-            // Expecting the external API to return a simple true for valid tokens
-            if ($response->json() !== true) {
-                return response()->json(['message' => 'Unauthorized: Invalid token'], 403);
+            $json = $response->json();
+
+            if (
+                !isset($json['data']['authenticated']) ||
+                !$json['data']['authenticated']
+            ) {
+                return response()->json(['message' => 'Unauthorized: Invalid token or authentication failed'], 403);
             }
+
+            // Optionally, set verified user info on the request if needed
+            // $request->merge(['auth_data' => $json['data']]);
 
         } catch (\Exception $e) {
             return response()->json(['message' => 'Unauthorized: Token verification failed'], 403);

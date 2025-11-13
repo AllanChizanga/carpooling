@@ -8,6 +8,7 @@ use App\Services\CarpoolRideService;
 use App\Services\RideBookingService;
 use App\Http\Requests\NewrideRequest;
 
+
 class DriverController extends Controller
 {    
 
@@ -35,17 +36,11 @@ class DriverController extends Controller
         $new_ride_data = $request->validated(); 
 
         //call carpoolride service 
-       $res =  $this->rideService->create_new_ride($new_ride_data); 
+       $result =  $this->rideService->create_new_ride($new_ride_data); 
 
         //response  
 
-        if($res)
-        { 
-            return response()->json(['data'=>[],'message'=>'New Ride Created Successfully'],200);
-        }
-        else{
-            return response()->json(['data'=>[],'message'=>'Failed To Created Ride'],422);
-        }
+        return response()->json($result, $result['success'] ? 200 : 400);
 
     
 
@@ -117,6 +112,6 @@ class DriverController extends Controller
         ], 422);
     }
     }//endof function 
-    
+
     
 }//class

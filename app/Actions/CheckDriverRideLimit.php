@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use App\Models\CarpoolRide;
+use App\Models\Ride;
 
 class CheckDriverRideLimit
 {
@@ -17,7 +17,7 @@ class CheckDriverRideLimit
     public function execute($driver_vehicle_id)
     {
         // Check the number of rides the driver created today
-        $driver_carpool_rides = CarpoolRide::where('driver_vehicle_id', $driver_vehicle_id)
+        $driver_carpool_rides = Ride::where('driver_vehicle_id', $driver_vehicle_id)
             ->whereDate('created_at', now()->toDateString())
             ->count();
         //if rides are 3 and above driver cannot create another ride 

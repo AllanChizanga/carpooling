@@ -126,8 +126,8 @@ class CarpoolRideService
             $pickupPointsNearby = RidePickupPoint::select('ride_id')
                 ->selectRaw(
                     "(6371 * acos(
-                        cos(radians(?)) * cos(radians(pickup_point_lat)) * cos(radians(pickup_point_long) - radians(?)) +
-                        sin(radians(?)) * sin(radians(pickup_point_lat))
+                        cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) +
+                        sin(radians(?)) * sin(radians(latitude))
                     )) AS distance",
                     [$originLat, $originLong, $originLat]
                 )
@@ -147,7 +147,7 @@ class CarpoolRideService
         $rides = $query->get();
 
         // Return rides with their pickup points
-        return $rides->load('pickupPoints');
+        return $rides->load('pickup_points');
         
 
     }

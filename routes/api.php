@@ -49,7 +49,7 @@ Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class)->control
 //passenger API
 
 Route::prefix('carpooling/passengers')->middleware(IsAuthenticated::class)->controller(PassengerController::class)->group(function () {
-    Route::post('','view_carpool_rides');
+    Route::post('view-carpool-rides','view_carpool_rides');
     //starting ride 
     Route::get('start-ride/{booking_id}','start_ride'); 
     //cancel ride  

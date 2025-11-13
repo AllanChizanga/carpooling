@@ -3,6 +3,7 @@
 namespace App\Services;
 
 
+use App\Models\Ride;
 use App\Actions\CheckDriverRideLimit;
 use App\Repositories\CarpoolRideRepositories;
 use App\Actions\CheckCanDriverCreateRideAction;
@@ -92,7 +93,7 @@ class CarpoolRideService
         $destinationLong = $data['destination_long'] ?? null;
 
         // Start query builder for CarpoolRide
-        $query = CarpoolRide::query();
+        $query = Ride::query();
 
         // 1. Match by origin and destination name (always required by validation)
         $query->where(function ($q) use ($originName, $destinationName) {
@@ -114,14 +115,14 @@ class CarpoolRideService
 
         // Match pickup point name with origin name
         if (!empty($originName)) {
-            $pickupPointMatchedRideIds = CarpoolRidePickupPoint::where('pickup_point_name', 'LIKE', '%' . $originName . '%')
-                ->pluck('carpool_ride_id')
+            $pickupPointMatchedRideIds = RidePickupPoint::where('name', 'LIKE', '%' . $originName . '%')
+                ->pluck('ride_id')
                 ->toArray();
         }
 
         // If coordinates provided, also match pickup points within 5km
         if ($originLat !== null && $originLong !== null) {
-            $pickupPointsNearby = CarpoolRidePickupPoint::select('carpool_ride_id')
+            $pickupPointsNearby = RidePickupPoint::select('ride_id')
                 ->selectRaw(
                     "(6371 * acos(
                         cos(radians(?)) * cos(radians(pickup_point_lat)) * cos(radians(pickup_point_long) - radians(?)) +
@@ -130,7 +131,7 @@ class CarpoolRideService
                     [$originLat, $originLong, $originLat]
                 )
                 ->having('distance', '<=', 5)
-                ->pluck('carpool_ride_id')
+                ->pluck('ride_id')
                 ->toArray();
 
             $pickupPointMatchedRideIds = array_unique(array_merge($pickupPointMatchedRideIds, $pickupPointsNearby));

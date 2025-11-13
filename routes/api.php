@@ -12,7 +12,7 @@ use App\Http\Controllers\PassengerController;
 //Driver APIS
 Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class)->controller(DriverController::class)->group(function () {
 
-    Route::post('create-driver-ride','create_driver_ride'); 
+    Route::post('create-driver-ride','create_driver_ride');   //tested and working 
     //drive view bookings for his ride 
     Route::get('ride-bookings/{ride_id}', 'ride_bookings');
     //accept ride request 

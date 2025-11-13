@@ -28,8 +28,18 @@ class CarpoolRideService
     public function create_new_ride($data)
     { 
         //algorithm 
-        //driver must not create more than 3 rides in a day 
+       
         //driver must be allowed by vpay to create right 
+        $res = $this->createRideAction->execute($data['user_id']);
+        
+        if(!$res)
+        { 
+            return [
+                'success' => false,
+                'message' => 'Driver is not allowed to create a new ride at this time due to insufficient fund.',
+                'data' => []
+            ];   
+        } 
 
 
      

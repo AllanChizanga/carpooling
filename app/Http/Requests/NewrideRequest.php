@@ -22,6 +22,7 @@ class NewrideRequest extends FormRequest
     public function rules(): array
     {
         return [
+        'user_id' => 'required',
         'driver_vehicle_id' => 'required',
         'origin_name' => 'required|string|max:255',
         'destination_name' => 'required|string|max:255',

@@ -3,9 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Exception;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\HttpFoundation\Response;
 
 class IsAuthenticated
 {
@@ -39,10 +40,8 @@ class IsAuthenticated
                 return response()->json(['message' => 'Unauthorized: Invalid token or authentication failed'], 403);
             }
 
-            // Optionally, set verified user info on the request if needed
-            // $request->merge(['auth_data' => $json['data']]);
-
-        } catch (\Exception $e) {
+            
+        } catch (Exception $e) {
             return response()->json(['message' => 'Unauthorized: Token verification failed'], 403);
         }
 

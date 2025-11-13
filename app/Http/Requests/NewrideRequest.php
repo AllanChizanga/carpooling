@@ -22,7 +22,7 @@ class NewrideRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'driver_vehicle_id' => 'required|exists:driver_vehicles,id',
+        'driver_vehicle_id' => 'required',
         'origin_name' => 'required|string|max:255',
         'destination_name' => 'required|string|max:255',
         'departure_time' => 'required|date_format:H:i',

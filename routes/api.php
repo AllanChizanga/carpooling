@@ -8,10 +8,6 @@ use App\Http\Controllers\DriverController;
 use App\Http\Middleware\IsDriverMiddleware;
 use App\Http\Controllers\PassengerController;
 
-//driver routes 
-// Route::prefix('carpooling')->middleware(['auth:sanctum',IsDriverMiddleware::class])->controller(DriverController::class)->group(function () {
-//     Route::post('create-driver-ride','create_driver_ride');
-// });
 
 //Driver APIS
 Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class)->controller(DriverController::class)->group(function () {

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Models\Driver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsDriverMiddleware
@@ -16,13 +17,39 @@ class IsDriverMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->user()) {
-            abort(403, 'Unauthorized. Driver access required.');
+        $token = $request->bearerToken();
+
+        if (!$token) {
+            return response()->json(['message' => 'Unauthorized: No bearer token provided'], 403);
         }
 
-        // Check if the user's id exists as a user_id in the drivers table
-        if (!Driver::where('user_id', $request->user()->id)->exists()) {
-            abort(403, 'Unauthorized. Driver access required.');
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $token,
+                'Accept' => 'application/json',
+            ])
+            ->timeout(5)
+            ->post('https://authentication.zomacdigital.co.zw/api/user/verify-token');
+
+            $json = $response->json();
+
+            if (
+                !isset($json['data']['authenticated']) ||
+                !$json['data']['authenticated']
+            ) {
+                return response()->json(['message' => 'Unauthorized: Invalid token or authentication failed'], 403);
+            }
+            // Check for is_driver, badge and is_activated in the response data
+            $data = $json['data'] ?? [];
+            if (
+                !isset($data['is_driver']) || !$data['is_driver'] ||
+                !isset($data['is_activated']) || $data['is_activated'] != "1" ||
+                !isset($data['badge']) || $data['badge'] !== 'red'
+            ) {
+                return response()->json(['message' => 'Unauthorized: Driver access required (activation, badge, and driver status required)'], 403);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Unauthorized: Token verification failed'], 403);
         }
 
         return $next($request);

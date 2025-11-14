@@ -10,7 +10,7 @@ use App\Http\Controllers\PassengerController;
 
 
 //Driver APIS
-Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class)->controller(DriverController::class)->group(function () {
+Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class,IsDriverMiddleware::class)->controller(DriverController::class)->group(function () {
 
     Route::post('create-driver-ride','create_driver_ride');   //tested and working 
     //drive view bookings for his ride 
@@ -27,7 +27,7 @@ Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class)->control
 
 });
 //endpoints for the ride entity
-Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class)->controller(RideController::class)->group(function () {
+Route::prefix('carpooling/drivers')->middleware(IsAuthenticated::class,IsDriverMiddleware::class)->controller(RideController::class)->group(function () {
     //cancel ride 
     Route::get('cancel-ride/{ride_id}','cancel_ride'); 
     //create ride from ride --driver can use previous ride info to create a new ride 

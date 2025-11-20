@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ride extends Model
 { 
@@ -26,6 +27,9 @@ class Ride extends Model
         'origin_long',
         'destination_lat',
         'destination_long',
+        'auto_accept',
+        'ride_type_id',
+        'home_pickup',
     ];
 
     public $timestamps = true; 
@@ -47,6 +51,14 @@ class Ride extends Model
     public function ride_notices()
     {
         return $this->hasMany(RideNotice::class, 'ride_id');
+    } 
+
+    /**
+     * Get the ride type for the ride.
+     */
+    public function rideType()
+    {
+        return $this->belongsTo(RideType::class, 'ride_type_id');
     }
     
 }//endof model class

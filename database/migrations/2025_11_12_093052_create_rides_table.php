@@ -27,6 +27,9 @@ return new class extends Migration
             $table->decimal('origin_long', 10, 7)->nullable();
             $table->decimal('destination_lat', 10, 7)->nullable();
             $table->decimal('destination_long', 10, 7)->nullable();
+            $table->boolean('auto_accept')->default(false);
+            $table->foreignUuid('ride_type_id');
+            $table->boolean('home_pickup')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

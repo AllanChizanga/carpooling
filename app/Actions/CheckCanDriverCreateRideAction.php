@@ -26,9 +26,7 @@ class CheckCanDriverCreateRideAction
         return true; //waiting for vpay api 
         try {
             // The vpay API endpoint for retrieving a user's balance
-            $response = Http::post('https://vpay.zomacdigital.co.zw/api/get-user-balance', [
-                'user_id' => $user_id
-            ]);
+            $response = Http::get("https://vpay.zomacdigital.co.zw/api/wallet/{$user_id}");
 
             if ($response->failed()) {
                 // If the request failed (network, timeout, server error, etc.), return null

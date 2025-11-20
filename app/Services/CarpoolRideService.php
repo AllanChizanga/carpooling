@@ -31,7 +31,7 @@ class CarpoolRideService
     { 
         //algorithm 
        
-        //driver must be allowed by vpay to create right 
+        //driver must be allowed by vpay to create ride 
         $res = $this->createRideAction->execute($data['user_id']);
         
         if(!$res)
